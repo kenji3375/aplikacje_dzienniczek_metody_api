@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Dziennik praktyki zawodowej</title>
+		<link rel="stylesheet" href="style.css">
+	</head>
+<body>
+	<h1>Dziennik praktyki zawodowej</h1>
+	<div class="center">
+		<button onclick="switch_template(1)">Metryczka</button>
+		<button onclick="switch_template(2)">Dziennik zajęć</button>
+		<button onclick="switch_template(3)">Podsumowanie</button>
+		<button onclick="switch_template(5)">Metody tablicowe</button>
+		<button onclick="switch_template(4)">Używanie API</button>
+	</div>
+	<div id="main" class="mainn"></div>
+	
+	
+	<template id="t1">
+		<h2>Dane ucznia</h2>
+		<div class="center flext3">
+			<div>
+				<ul>
+					<li>Imię i nazwisko: <span id="dimie"></span> <span id="dnazwisko"></span> </li>
+					<li>Klasa <span id="dklasa"></span>, rok szkolny <span id="drok"></span></li>
+					<li>Odbytej w: <span id="dpraktyki"></span></li>
+					<li>W terminie od <span id="ddata_od"></span> do <span id="ddata_do"></span></li>
+				</ul>
+			</div>
+			<button>Edytuj</button>
+			
+			<h3>Wprowadź dane ucznia i praktyki </h3>
+		</div>
+		<form id="idf1">
+			<label for="imie">Imię:</label>
+			<input type="text" id="imie" name="imie" autocomplete="off"><br><br>
+			<label for="nazwisko">Nazwisko:</label>
+			<input type="text" id="nazwisko" name="nazwisko" autocomplete="off"><br><br>
+			<label for="klasa">Klasa:</label>
+			<select id="klasa" name="klasa">
+				<option value="">Wybierz klasę</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+			</select><br><br>
+			<label for="rok">Rok szkolny:</label>
+			<select id="rok" name="rok">
+				<option value="">Wybierz rok</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+			</select><br><br>
+			<label for="praktyki">Praktyki odbywają się w:</label>
+			<select id="praktyki" name="praktyki">
+				<option value="">Wybierz miejsce praktyk</option>
+				<option value="1asdf">1</option>
+				<option value="2sdaf">2</option>
+				<option value="3safd">3</option>
+			</select><br><br>
+			<label for="data_od">Data rozpoczęcia:</label>
+			<input type="date" id="data_od" name="data_od"><br><br>
+			<label for="data_do">Data zakończenia:</label>
+			<input type="date" id="data_do" name="data_do"><br><br>
+			<button type="reset">Wyczyść</button>
+			<button onclick="save_metryczka()">Dodaj</button>
+			<button type="button" onclick="clear_metrcyzka_from_local_storage()">Wyczyść z pamięci</button>
+		</form>
+		
+	</template>
+	<template id="t2">
+		<h2>Wprowadź nowe zajęcia</h2>
+		<form >
+			<label for="data">Data:</label>
+			<input type="date" id="data_praktyk" name="data"><br><br>
+			<!--<input type="radio" id="osoba1" name="osoba1" value="osoba1">
+			<label for="osoba1">Osoba 1:</label>
+			<input type="radio" id="osoba1" name="osoba1" value="osoba2">
+			<label for="osoba2">Osoba 2:</label>
+			<input type="radio" id="osoba1" name="osoba1" value="osoba3">
+			<label for="osoba3">Osoba 3:</label><br><br> -->
+			<label for="dzial">Dział:</label>
+			<select id="dzial" name="dzial">
+				<option value="">Wybierz dział</option>
+				<option value="1">dział 1</option>
+				<option value="2">dział 2</option>
+				<option value="3">dział 3</option>
+				<option value="4">dział 4</option>
+			</select><br><br>
+			<br><br>
+			<label for="temat">Temat:</label>
+			<input type="text" id="temat" name="temat"><br><br>
+			<h3>Realizacja materiału</h3>
+			<!--<label for="zrealizowano">Zrealizowano:</label>
+			<input type="checkbox" id="zrealizowano" name="zrealizowano" value="zrealizowano"><br><br>-->
+			<label for="godziny">Liczba godzin:<span id="suwak_godziny">7</span></label>
+			<input type="range" id="godziny" name="godziny" min="1" max="7" value="7" onchange="suwak2()"><br><br>
+			<label for="ocena">Ocena:<span id="grade">4</span></label>
+			<input type="range" id="ocena" name="ocena" min="1" max="6" value="4" onchange="suwak()"><br><br>
+			<label for="opis">Raport:</label>
+			<textarea id="opis_dnia" name="opis" rows="4" cols="50" placeholder="Opis zajęć"></textarea>
+			<button type="reset">Wyczyść</button>
+			<button id="idf2" onclick="do_sprawozdanies()">Dodaj</button>
+			<br><br>
+			<div id="opisy">
+				<textarea id="opis" name="opis" rows="4" cols="50" placeholder="Opis zajęć" readonly>sadfsadfsdafasdfasf</textarea>
+				<br><br>
+			</div>
+		</form>
+	</template>
+
+	<template id="t3">
+		<h2>Podsumowanie</h2>
+		<form id="idf3">
+			<table>
+				<tr>
+				<td id="a1">Nazwa modułu</td>
+				<td id="b1">Ilość godzin zrealizowanych</td>
+				</tr>
+				<tr>
+				<td id="a2">dział 1</td>
+				<td id="b2">0</td>
+				</tr>
+				<tr>
+				<td id="a3">dział 2</td>
+				<td id="b3">0</td>
+				</tr>
+				<tr>
+				<td id="a4">dział 3</td>
+				<td id="b4">0</td>
+				</tr>
+				<tr>
+				<td id="a5">dział 4</td>
+				<td id="b5">0</td>
+				</tr>
+				<tr>
+				<td>Razem:</td>
+				<td id="b6">0</td>
+				</tr>
+			</table>
+			<br><br>
+			<span>Pozostało do zrealizowania: <span id="pozostalo"></span></span>
+			<br><br>
+			<span>Średnia ocen: <span id="srednia"></span></span>
+			<br><br>
+			<span id="brakujace_h"></span>
+		</form>
+	</template>
+
+	<template id ="t5">
+		<h2>Metody Tablicowe</h2>
+		<div class="center column">
+			<label for="string">Wprowadź ciąg znaków:</label>
+			<input type="text"  class="le_inpute5" id="string1" name="string"><br><br>
+			<button onclick="do_tablicy()">Play!</button>
+			<br><br>
+			<p id="p1" class="p3"></p>
+			<br><br>
+			<p id="p2" class="p3"></p>
+			<br><br>
+			<p id="p3" class="p3"></p>
+			<br><br>
+			<p id="p4" class="p3"></p>
+		</div>
+	</template>
+
+
+	<template id="t4" class="center">
+		<h2> API do ChatGPT, ograniczona wersja GPT-3.5 </h2>
+		<div class="main2">
+
+			<!-- example of api usage -->
+			<div class="chat center">
+				<div id="content" class="chat--content"></div>
+				<form class="chat--input" id="chat">
+					
+						<input type="text" class="chat--input--text" placeholder="Type a message..." id="message-box" autocomplete="off" autofocus>
+						<button id="send-button" type="" class="chat--input--button">Send</button>
+						
+				</div>
+			</div>
+			
+		</div>
+	</template>
+
+	
+
+
+	  
+
+
+
+	<script>
+
+		let t1 = document.querySelector('#t1');
+		let main = document.querySelector('#main');
+
+		let index = 1;
+		
+		main.innerHTML = t1.innerHTML;
+		
+
+		//switch_template(index);
+
+		
+		
+		
+
+		
+		document.querySelector("#idf1").addEventListener("click", (event)=>{
+				event.preventDefault();
+			});
+
+
+
+		
+		let imie = "";
+		let nazwisko = "";
+		let klasa = "";
+		let rok = "";
+		let praktyki = "";
+		let data_od = "";
+		let data_do = "";
+		
+		
+		let ocena = "x";
+		
+		switch_template(1);
+		
+
+
+		/*sprawozdania*/
+		let structure = [20];
+		for(let i = 0; i < 20; i++)
+		{
+			structure[i] = {
+				"imie": imie,
+				"nazwisko": nazwisko,
+				"dzial": "",
+				"temat": "",
+				"zrealizowano": false,
+				"godziny": 0,
+				"ocena": null,
+				"opis": "321",
+				"data": "123"
+			};
+		}
+		let numer_sprawozdania = 0;
+		
+		function do_sprawozdanies()
+		{
+			let l_data = document.querySelector('#data_praktyk').value;
+			let l_dzial = document.querySelector('#dzial').value;
+			let l_temat = document.querySelector('#temat').value;
+			let l_liczba_godzin = document.querySelector('#godziny').value;
+			let l_ocena = document.querySelector('#ocena').value;
+			let l_opis = document.querySelector('#opis_dnia').value;
+
+
+			if (numer_sprawozdania == 20)
+			{
+				alert("Osiągnięto maksymalną liczbę sprawozdań!");
+				return;
+			}
+			else if(l_data == "" || l_dzial == "" || l_temat == "" || l_liczba_godzin == "" || l_ocena == "" || l_opis == "")
+			{
+				alert("Wypełnij wszystkie pola!");
+				return;
+			}
+			else
+			{
+				structure[numer_sprawozdania].imie = imie;
+				structure[numer_sprawozdania].nazwisko = nazwisko;
+				structure[numer_sprawozdania].dzial = document.querySelector('#dzial').value;
+				structure[numer_sprawozdania].temat = document.querySelector('#temat').value;
+				structure[numer_sprawozdania].zrealizowano = true;
+				structure[numer_sprawozdania].ocena = document.querySelector('#ocena').value;
+				structure[numer_sprawozdania].opis = document.querySelector('#opis_dnia').value;
+				structure[numer_sprawozdania].data = document.querySelector('#data_praktyk').value;
+				structure[numer_sprawozdania].godziny = document.querySelector('#godziny').value;
+				numer_sprawozdania++;
+
+				show_sprawozdania();
+			}
+		}
+		
+		function show_sprawozdania()
+		{
+			let opisy = document.querySelector("#opisy");
+			let tekst = "";
+			for(let i = 0; i < 20; i++)
+			{
+				if(structure[i].zrealizowano)
+				{
+					tekst += 
+						 '<h3>Temat: '+structure[i].temat+'</h3>'
+						+'<h3>Imię i nazwisko: '+structure[i].imie+' '+structure[i].nazwisko+'</h3>'
+						+'<h3>data:&nbsp;'+structure[i].data+'</h3>'
+						+'<h3>liczba godzin:&nbsp;'+structure[i].godziny+'</h3>'
+						+'<h3>ocena:&nbsp;'+structure[i].ocena+"</h3>"
+						+'<h3>dział:&nbsp;'+structure[i].dzial+'</h3>'
+						+'<h3>opis:</h3><textarea rows="4" cols="40" placeholder="Opis zajęć" readonly>'
+						+ structure[i].opis +'</textarea><br><br>';
+				}
+			}
+			opisy.innerHTML = tekst;
+			//alert(tekst) ;
+		}
+
+
+
+		
+		function add()
+		{
+			let imie = document.querySelector('#imie').value;
+			let nazwisko = document.querySelector('#nazwisko').value;
+			let klasa = document.querySelector('#klasa').value;
+			let rok = document.querySelector('#rok').value;
+			let praktyki = document.querySelector('#praktyki').value;
+			let data_od = document.querySelector('#data_od').value;
+			let data_do = document.querySelector('#data_do').value;
+
+			
+		}
+
+		function switch_template(id)
+		{
+			let t = document.querySelector('#t' + id);
+			main.innerHTML = t.innerHTML;
+			index = id;
+			
+			if(index == 1)
+			{
+				if (czy_metryczka_w_local_storage())
+				{
+					read_metryczka_from_local_storage();
+				}
+				show_dane_metrcyzka();
+			}
+			
+			else if(index == 3)
+			{
+				let a1 = document.querySelector('#a1');
+				let b1 = document.querySelector('#b1');
+				let a2 = document.querySelector('#a2');
+				let b2 = document.querySelector('#b2');
+				let a3 = document.querySelector('#a3');
+				let b3 = document.querySelector('#b3');
+				let a4 = document.querySelector('#a4');
+				let b4 = document.querySelector('#b4');
+				let a5 = document.querySelector('#a5');
+				let b5 = document.querySelector('#b5');
+				let b6 = document.querySelector('#b6');
+	
+				/*a1.innerHTML = 'Imię: ' + imie;
+				b1.innerHTML = 'Nazwisko: ' + nazwisko;
+				a2.innerHTML = 'Klasa: ' + klasa;
+				b2.innerHTML = 'Rok szkolny: ' + rok;
+				a3.innerHTML = 'Praktyki odbywają się w: ' + praktyki;
+				b3.innerHTML = 'Data rozpoczęcia: ' + data_od;
+				a4.innerHTML = 'Data zakończenia: ' + data_do;
+				b4.innerHTML = 'Liczba godzin: ' + godziny;
+				a5.innerHTML = 'Ocena: ' + ocena;
+				b5.innerHTML = 'Temat: ' + temat;
+				b6.innerHTML = 'Zrealizowano: ' + zrealizowano;*/
+
+
+				let h_dzial1 = 0;
+				let h_dzial2 = 0;
+				let h_dzial3 = 0;
+				let h_dzial4 = 0;
+
+				for (let c = 0; c < 20; c++)
+				{
+					if(structure[c].zrealizowano)
+					{
+						if ( structure[c].dzial == 1)
+						{
+							h_dzial1 += parseInt(structure[c].godziny);
+						}
+						else if ( structure[c].dzial == 2)
+						{
+							h_dzial2 += parseInt(structure[c].godziny);
+						}
+						else if ( structure[c].dzial == 3)
+						{
+							h_dzial3 += parseInt(structure[c].godziny);
+						}
+						else if ( structure[c].dzial == 4)
+						{
+							h_dzial4 += parseInt(structure[c].godziny);
+						}
+					}
+				}
+
+				document.querySelector('#b2').innerHTML = h_dzial1;
+				document.querySelector('#b3').innerHTML = h_dzial2;
+				document.querySelector('#b4').innerHTML = h_dzial3;
+				document.querySelector('#b5').innerHTML = h_dzial4;
+
+				let h_dzial_all = h_dzial1 + h_dzial2 + h_dzial3 + h_dzial4;
+				document.querySelector('#b6').innerHTML = h_dzial_all;
+
+				let wymagane_h = 140;
+				let brakujace_h = wymagane_h - h_dzial_all;
+
+				document.querySelector('#pozostalo').innerHTML = brakujace_h;
+
+				if (structure[19].zrealizowano && brakujace_h > 0)
+				{
+					/*make it red and stronger*/
+					document.querySelector('#pozostalo').style.color = "red";
+					document.querySelector('#pozostalo').style.fontWeight = "bold";
+
+					document.querySelector('#brakujace_h').innerHTML = "Nie wszystkie godziny zostały zrealizowane";
+					document.querySelector('#brakujace_h').style.color = "red";
+					document.querySelector('#brakujace_h').style.fontWeight = "bold";
+				}
+
+				/*average*/
+				let srednia = 0;
+				let suma = 0;
+				let ilosc = 0;
+				for (let c = 0; c < 20; c++)
+				{
+					if(structure[c].zrealizowano)
+					{
+						suma += parseInt(structure[c].ocena);
+						ilosc++;
+					}
+				}
+				srednia = suma / ilosc;
+				document.querySelector('#srednia').innerHTML = srednia.toFixed(2);
+				if ( document.querySelector('#srednia').innerHTML == "NaN")
+				{
+					document.querySelector('#srednia').innerHTML = "Brak ocen";
+				}
+					
+				
+				
+			}
+			else if (index == 4)
+			{
+
+				const messageBox = document.querySelector('#message-box');
+				const content = document.querySelector('#content');
+				const chat = document.querySelector('#chat');
+				const sendButton = document.querySelector('#send-button');
+
+				console.log(chat);
+
+				/*chat prevent default*/
+				chat.addEventListener('submit', (event) => {
+					event.preventDefault();
+					const message = messageBox.value;
+					messageBox.value = '';
+					content.innerHTML += `<p class="message-right">${message}</p>`;
+					let last_message = document.querySelector('.message-right:last-child');
+					last_message.scrollIntoView();
+					//alert(message);
+					const queryString = 'param1=value1&param2=value2'; // or use the query string object
+
+
+					const url = "https://nodejs-production-ea3b.up.railway.app/?query=";
+					const req = url + message;
+
+					fetch(req)
+					.then(response => {
+						if (!response.ok) {
+						throw new Error('Network response was not ok');
+						}
+						//console.log(response.json());
+						return response.text();
+					})
+					.then(responseText => {
+						// handle the response text
+						console.log(responseText);
+						content.innerHTML += `<p class="message-left">${responseText}</p>`;
+						let last_message1 = document.querySelector('.message-left:last-child');
+						last_message1.scrollIntoView();
+					})
+					.catch(error => {
+						// handle any errors that occurred during the request
+						console.error('Error:', error);
+					});
+
+				});
+			}
+
+
+			setTimeout(function(){
+				if(index == 1)
+				{
+					document.querySelector("#idf1").addEventListener("click", (event)=>{
+						event.preventDefault();
+					});
+				}
+				else if(index == 2)
+				{
+					document.querySelector("#idf2").addEventListener("click", (event)=>{
+						event.preventDefault();
+					});
+
+					show_sprawozdania();
+
+				}
+				else if(index == 3)
+				{
+					document.querySelector("#idf3").addEventListener("click", (event)=>{
+						event.preventDefault();
+					});
+				}
+			}, 10);
+
+		}
+
+		function suwak()
+		{
+			let ocena = document.querySelector("#ocena").value;
+			document.querySelector('#grade').innerHTML = ocena;
+			//alert(ocena);
+		}
+
+		function suwak2()
+		{
+			let hour = document.querySelector("#godziny").value;
+			document.querySelector('#suwak_godziny').innerHTML = hour;
+		}
+
+		function save_metryczka()
+		{
+			imie = document.querySelector('#imie').value;
+			nazwisko = document.querySelector('#nazwisko').value;
+			klasa = document.querySelector('#klasa').value;
+			rok = document.querySelector('#rok').value;
+			praktyki = document.querySelector('#praktyki').value;
+			data_od = document.querySelector('#data_od').value;
+			data_do = document.querySelector('#data_do').value;
+
+			if (imie == "" | nazwisko == "" | klasa == "" | rok == "" | praktyki == "" | data_od == "" | data_do == "")
+			{
+				alert("Wypełnij wszystkie pola!");
+				imie = "";
+				nazwisko = "";
+				klasa = "";
+				rok = "";
+				praktyki = "";
+				data_od = "";
+				data_do = "";
+			}
+			else
+			{
+				save_metryczka_to_local_storage();
+			}
+
+
+
+
+			show_dane_metrcyzka();
+		}
+		
+		function show_dane_metrcyzka()
+		{
+			if (imie == "" || imie == null)				imie = "Nie podano";
+			if (nazwisko == "" || nazwisko == null)		nazwisko = "Nie podano";
+			if (klasa == "" || klasa == null)			klasa = "Nie podano";
+			if (rok == "" || rok == null)				rok = "Nie podano";
+			if (praktyki == "" || praktyki == null)		praktyki = "Nie podano";
+			if (data_od == "" || data_od == null)		data_od = "Nie podano";
+			if (data_do == "" || data_do == null)		data_do = "Nie podano";
+			
+			document.querySelector('#dimie').innerHTML = imie;
+			document.querySelector('#dnazwisko').innerHTML = nazwisko;
+			document.querySelector('#dklasa').innerHTML = klasa;
+			document.querySelector('#drok').innerHTML = rok;
+			document.querySelector('#dpraktyki').innerHTML = praktyki;
+			document.querySelector('#ddata_od').innerHTML = data_od;
+			document.querySelector('#ddata_do').innerHTML = data_do;
+		}
+		
+		
+		function save_metryczka_to_local_storage()
+		{
+			localStorage.setItem("imie", imie);
+			localStorage.setItem("nazwisko", nazwisko);
+			localStorage.setItem("klasa", klasa);
+			localStorage.setItem("rok", rok);
+			localStorage.setItem("praktyki", praktyki);
+			localStorage.setItem("data_od", data_od);
+			localStorage.setItem("data_do", data_do);
+
+			
+		}
+
+		function read_metryczka_from_local_storage()
+		{
+			imie = localStorage.getItem("imie");
+			nazwisko = localStorage.getItem("nazwisko");
+			klasa = localStorage.getItem("klasa");
+			rok = localStorage.getItem("rok");
+			praktyki = localStorage.getItem("praktyki");
+			data_od = localStorage.getItem("data_od");
+			data_do = localStorage.getItem("data_do");
+		}
+		
+		function clear_metrcyzka_from_local_storage()
+		{
+			localStorage.removeItem("imie");
+			localStorage.removeItem("nazwisko");
+			localStorage.removeItem("klasa");
+			localStorage.removeItem("rok");
+			localStorage.removeItem("praktyki");
+			localStorage.removeItem("data_od");
+			localStorage.removeItem("data_do");
+
+			imie = "";
+			nazwisko = "";
+			klasa = "";
+			rok = "";
+			praktyki = "";
+			data_od = "";
+			data_do = "";
+
+			show_dane_metrcyzka();
+		}
+
+		function czy_metryczka_w_local_storage()
+		{
+			if (localStorage.getItem("imie") === null)
+			{
+				return false;
+			}
+			else
+			{
+				return true;
+			}
+		}
+
+		function do_tablicy()
+		{
+			let str1 = document.querySelector('#string1').value;
+			let arr = str1.split("");
+			//alert(arr); // output: ["H", "e", "l", "l", "o", ",", " ", "w", "o", "r", "l", "d", "!"]
+
+			
+			let arr1 = arr.filter(function (el) {
+				return el != " ";
+			});
+			
+			let arr2 = arr.map(function(num) {
+				return num + "dodano coś";
+			});
+
+			let str2="";
+			str2 = arr.reduce(function (a, b) {
+				return a + b;
+			});
+			
+			document.querySelector('#p1').innerHTML = "tablica: [" + arr+"]";
+			document.querySelector('#p2').innerHTML = "tablica bez '&nbsp;&nbsp;', przy użyciu fliter: [" + arr1+"]";
+			document.querySelector('#p3').innerHTML = "tablica z dodanym 'dodano coś' przy użyciu map: [" + arr2+"]";
+			document.querySelector('#p4').innerHTML = "tablica złączona przy użyciu reduce: '" + str2+"'";
+
+
+
+
+		}
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,419 @@
+/* Ustawienia dla całej strony */
+body {
+  background-color: #F4F4F4;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Tytuł strony */
+h1 {
+  color: #333333;
+  font-size: 48px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+  text-shadow: 2px 2px #CCCCCC;
+}
+
+/* Przyciski */
+button {
+  background-color: #E91E63;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 2px 2px #888888;
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+  margin: 20px;
+  padding: 10px 20px;
+  text-align: center;
+  text-shadow: 1px 1px #888888;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #FF4081;
+}
+
+/* Formularz */
+form {
+  background-color: white;
+  border-radius: 10px;
+  /*box-shadow: 5px 5px #888888;*/
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 20px;
+}
+
+label {
+  display: block;
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+input[type="date"],
+input[type="number"],
+select {
+  border-radius: 5px;
+  border: 1px solid #888888;
+  font-size: 18px;
+  margin: 10px 0;
+  padding: 10px;
+  width: 100%;
+}
+
+select option {
+  font-size: 18px;
+}
+
+input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+textarea {
+  border-radius: 5px;
+  border: 1px solid #888888;
+  font-size: 18px;
+  margin: 10px 0;
+  padding: 10px;
+  resize: none;
+  width: 100%;
+}
+
+input[type="range"] {
+  margin-top: 20px;
+  width: 100%;
+}
+
+button[type="submit"],
+button[type="reset"] {
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 2px 2px #888888;
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+  margin: 20px 10px 20px 0;
+  padding: 10px 20px;
+  text-align: center;
+  text-shadow: 1px 1px #888888;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover,
+button[type="reset"]:hover {
+  background-color: #8BC34A;
+}
+
+/* Nagłówek formularza */
+h2 {
+  background-color: #E91E63;
+  border-radius: 5px;
+  box-shadow: 2px 2px #888888;
+  color: white;
+  margin: 0;
+  padding: 10px 20px;
+  text-align: center;
+  text-shadow: 1px 1px #888888;
+}
+
+/* Podtytuł formularza */
+h3 {
+color: #E91E63;
+font-size: 24px;
+margin: 20px 0 10px;
+}
+
+/* Stylowanie checkboxów */
+input[type="checkbox"] + label {
+color: #333333;
+font-size: 18px;
+font-weight: normal;
+margin-left: 5px;
+}
+
+input[type="checkbox"]:checked + label {
+color: #E91E63;
+font-weight: bold;
+}
+
+/* Komunikat o dodaniu nowych zajęć */
+#success-message {
+background-color: #4CAF50;
+border-radius: 5px;
+box-shadow: 2px 2px #888888;
+color: white;
+font-size: 18px;
+margin: 20px 0;
+padding: 10px 20px;
+text-align: center;
+text-shadow: 1px 1px #888888;
+}
+
+/* Komunikat o błędzie */
+#error-message {
+background-color: #FF5722;
+border-radius: 5px;
+box-shadow: 2px 2px #888888;
+color: white;
+font-size: 18px;
+margin: 20px 0;
+padding: 10px 20px;
+text-align: center;
+text-shadow: 1px 1px #888888;
+}
+
+form {
+	margin-top: 10px;
+}
+
+.center {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input[type="date"] {
+  max-width: 95%;
+}
+
+input {
+  max-width: 95%;
+}
+
+select {
+  max-width: 95%;
+}
+
+.main {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 5px 5px #888888;
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 20px;
+}
+/*=========================================*/
+
+.flext3 {
+  display: flex;
+  justify-content: space-around;
+  /*make it vertica*/
+  flex-direction: column;
+  align-items: center;
+}
+.mainn
+{
+  margin-top: 10px;
+}
+/*=========================================*/
+/*=========================================*/
+/*=========================================*/
+
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:nth-child(odd) {
+  background-color: #fff;
+}
+th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Show scrollbar on all elements */
+::-webkit-scrollbar {
+  display: block;
+}
+ 
+/* Define scrollbar style */
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+ 
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 5px;
+}
+
+/* Define scrollbar width and height */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.container {
+  overflow-y: scroll; /* Enable vertical scrollbar */
+}
+
+.container::-webkit-scrollbar {
+  width: 0; /* Hide scrollbar */
+  height: 0;
+}
+/*list*/
+ul {
+  list-style-type: none;
+  /*margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #E91E63;
+  border-radius: 5px;
+  box-shadow: 2px 2px #888888;*/
+}
+
+li > span {
+  display: block;
+  color: red;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+
+
+/*api css*/
+.chat {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 1rem;
+	/*width: 32rem;*/
+  width:60vw;
+	background-color: white;
+  border-radius: 25px;
+  border: 4px solid silver;
+}
+
+
+
+.chat--input--text {
+	flex-grow: 1;
+	/*padding: 1rem;*/
+	border-radius: 25px 0 0 25px;
+	height: 10vh;
+  padding: 0;
+  font-size: 25px;
+}
+
+.chat--input--button {
+/*button[type="submit"] {*/
+	border-radius: 0 25px 25px 0;
+	border: 0;
+	background-color: #ed2415;
+	color: white;
+	font-weight: 500;
+	font-size: 16px;
+	width: 6rem;
+	height: 10vh;
+	cursor: pointer;
+  margin:0;
+  /*padding: 17.25px 0 17.25px 0;*/
+}
+
+.chat--input--button:hover {
+	background-color: #f54c40;
+}
+
+.chat--input--button:focus {
+  background-color: #f58e87;
+}
+.chat--content {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    width: 100%;
+    height: 32rem;
+    gap: 1rem;
+}
+.message-right {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  margin: 0 0 0 auto;
+}
+.message-left {
+  display: flex;
+  flex-direction: row;
+    align-items: center;
+    margin: 0 auto 0 0;
+} 
+
+.chat--content > p {
+  font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+    font-weight: 700;
+    color: white;
+    background-color: #E91E63;
+    border-radius: 25px 25px 25px 25px;
+    /*width : fit-content;*/
+    max-width: 100%;
+    word-break: break-all;
+    border: 3px solid silver;
+    
+  }
+  
+  .main2
+  {
+  display: flex;
+  justify-content: center;
+  margin-top: 2vh;
+}
+.inputs
+{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction:row;
+  /*space between*/
+
+}
+
+.chat--input {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+  justify-content: stretch;
+  /*height: 30vh;*/
+}
+
+.le_inpute5
+{
+  width: 40%;
+  height: 10vh;
+  border-radius: 25px;
+  border: 4px solid silver;
+  font-size: 25px;
+  padding: 0 0 0 10px;
+  font-size: 25px;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.p3
+{
+  font-size: 25px;
+  font-weight: bold;
+  /*color: #E91E63;*/
+  margin: 0;
+  padding: 0;
+}
