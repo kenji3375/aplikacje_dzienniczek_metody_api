@@ -230,21 +230,20 @@
 
 		/*sprawozdania*/
 		let structure = [20];
-		structure = structure.map(function(num) {
-				let str = {
-					"imie": imie,
-					"nazwisko": nazwisko,
-					"dzial": "",
-					"temat": "",
-					"zrealizowano": false,
-					"godziny": 0,
-					"ocena": null,
-					"opis": "321",
-					"data": "123"
-				};
-				return str;
-				
-			});
+		for(let i = 0; i < 20; i++)
+		{
+			structure[i] = {
+				"imie": imie,
+				"nazwisko": nazwisko,
+				"dzial": "",
+				"temat": "",
+				"zrealizowano": false,
+				"godziny": 0,
+				"ocena": null,
+				"opis": "321",
+				"data": "123"
+			};
+		}
 		let numer_sprawozdania = 0;
 		
 		function do_sprawozdanies()
